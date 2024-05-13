@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import webProgramming.stockTracker.model.Person;
+import webProgramming.stockTracker.model.Product;
 import webProgramming.stockTracker.service.StockService;
 
 @Controller
@@ -23,22 +23,22 @@ public class StockController {
 	@GetMapping("form.html")
 	public ModelAndView displayForm() {
 		ModelAndView mv = new ModelAndView("form");
-		mv.addObject("person", new Person());
+		mv.addObject("product", new Product());
 
 		return mv;
 	}
 
 	@PostMapping("/send")
-	public ModelAndView processForm(@Valid @ModelAttribute Person person, BindingResult result) {
+	public ModelAndView processForm(@Valid @ModelAttribute Product product, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("person", person);
+		mv.addObject("product", product);
 
 		if (result.hasErrors())
 			mv.setViewName("form");
 		else {
 			mv.setViewName("person-list");
-			service.create(person);
-			mv.addObject("persons", service.findAll());
+			service.create(product);
+			mv.addObject("product", service.findAll());
 		}
 
 		return mv;
@@ -47,7 +47,7 @@ public class StockController {
 	@GetMapping("list.html")
 	public ModelAndView list() {
 		ModelAndView mv = new ModelAndView("person-list");
-		mv.addObject("persons", service.findAll());
+		mv.addObject("product", service.findAll());
 		
 		return mv;
 	}
@@ -56,7 +56,7 @@ public class StockController {
 	public ModelAndView delete(@PathVariable long id) {
 		ModelAndView mv = new ModelAndView("person-list");
 		service.delete(id);
-		mv.addObject("persons", service.findAll());
+		mv.addObject("product", service.findAll());
 			
 		return mv;
 	}

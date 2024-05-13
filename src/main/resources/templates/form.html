@@ -23,20 +23,31 @@
 <body>
 	<h2>Stok Takip Ekranı</h2>
 	<p>Please fill the following form:</p>
-	<form action="/send" method="post" th:object="${person}">
+	<form action="/send" method="post" th:object="${product}">
 		<div class="form-container">
-			<label for="fn">First Name:</label>
-			<input type="text" id="fn" th:field="*{productName}">
+			<label for="pn">Product Name:</label>
+			<input type="text" id="pn" th:field="*{productName}">
 			<div><span th:errors="*{productName}" class="error"></span></div>
 			
-			<label for="ln">Last Name:</label>
-			<input type="text" id="ln" th:field="*{lastName}">
-			<div><span th:errors="*{lastName}" class="error"></span></div>
+			<label for="ln">Count:</label>
+			<input type="text" id="ln" th:field="*{count}">
+			<div><span th:errors="*{count}" class="error"></span></div>
+
+			<label for="ln">Barcode:</label>
+			<input type="text" id="ln" th:field="*{barcode}">
+			<div><span th:errors="*{barcode}" class="error"></span></div>
+						
+			<label for="ln">Purchase Price:</label>
+			<input type="text" id="ln" th:field="*{purchasePrice}">
+			<div><span th:errors="*{purchasePrice}" class="error"></span></div>			
 			
+			<label for="ln">Sale Price:</label>
+			<input type="text" id="ln" th:field="*{salePrice}">
+			<div><span th:errors="*{salePrice}" class="error"></span></div>
+					
 			<label for="dob">Date of Birth:</label>
 			<input type="text" id="dob" th:field="*{dateOfBirth}">
 			<div><span th:errors="*{dateOfBirth}" class="error"></span></div>	
-			
 		
 			<input type="submit" value="Ekle" class="submit-button">
 		</div>

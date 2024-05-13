@@ -5,24 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import webProgramming.stockTracker.dao.App5Repository;
-import webProgramming.stockTracker.model.Person;
+import webProgramming.stockTracker.dao.StockRepository;
+import webProgramming.stockTracker.model.Product;
 
 @Service
 public class StockService {
 
 	@Autowired
-	private App5Repository repository;
+	private StockRepository repository;
 
-	public List<Person> findAll() {
+	public List<Product> findAll() {
 		return repository.findAll();
 	}
 
-	public Person findById(long id) {
+	public Product findById(long id) {
 		return repository.findById(id);
 	}
 
-	public void create(Person person) {
+	public void create(Product person) {
 		repository.create(person);
 	}
 
