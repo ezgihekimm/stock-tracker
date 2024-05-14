@@ -1,33 +1,40 @@
 package webProgramming.stockTracker.model;
 
+
 import java.time.LocalDate;
 
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Product {
 
 	private long id;
-
+	
+	@NotNull
 	@Size(min = 3, max = 50)
 	private String productName;
 	
-	@Min(0)
+	@Min(1)
 	private int count;
 	
 	@Min(0)
 	private int barcode;
 	
-	@Min(0)
+	@Min(5)
 	private double purchasePrice;
 	  
-	@Min(0)
+	@Min(5)
     private double salePrice; 
-
+	
+    @NotNull
 	@Past
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(pattern = "dd.MM.yyyy")
 	private LocalDate dateOfBirth;
 
 	public long getId() {
@@ -83,7 +90,9 @@ public class Product {
 	}
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
+
 		this.dateOfBirth = dateOfBirth;
 	}
+
 
 }
