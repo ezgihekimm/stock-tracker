@@ -52,7 +52,7 @@ public class StockRepository {
 	}
 
 	public void delete(long id) {
-		String sql = "delete from person where id = ?";
+		String sql = "delete from product where id = ?";
 		jdbcTemplate.update(sql, id);
 	} 
 }

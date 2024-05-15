@@ -21,22 +21,31 @@
 </head>
 
 <body>
+	<div class="container">
 	<h2>Stok Takip Ekranı</h2>
 	<p>Lütfen formu eksiksiz doldurunuz.</p>
-	<form action="/send" method="post" th:object="${product}">
+	<form action="/send" method="post" th:object="${product}" class="form">
 		<div class="form-container">
+			
+			<div class="form-item">
 			<label for="pn">Ürün Adı:</label>
 			<input type="text" id="pn" th:field="*{productName}">
 			<div><span th:errors="*{productName}" class="error"></span></div>
+			</div>
 			
+			<div class="form-item">
 			<label for="ln">Adet:</label>
 			<input type="text" id="ln" th:field="*{count}">
 			<div><span th:errors="*{count}" class="error"></span></div>
-
+			</div>
+			
+			<div class="form-item">
 			<label for="ln">Barkod Numarası:</label>
 			<input type="text" id="ln" th:field="*{barcode}">
 			<div><span th:errors="*{barcode}" class="error"></span></div>
+			</div>
 			
+			<div class="form-item">
 			<label for="ln">Kategori</label>
 			<select name="cars" id="cars">
 			    <option value="volvo">Meyve</option>
@@ -45,23 +54,31 @@
 			    <option value="audi">Temel Gıda</option>
 			  </select>
 			 <div><span th:errors="*{barcode}" class="error"></span></div>
-		
+			 </div>
+			 
+			 <div class="form-item">
 			<label for="ln">Alış Fiyatı:</label>
 			<input type="text" id="ln" th:field="*{purchasePrice}">
-			<div><span th:errors="*{purchasePrice}" class="error"></span></div>			
-			
+			<div><span th:errors="*{purchasePrice}" class="error"></span></div>	
+			</div>	
+				
+			<div class="form-item">
 			<label for="ln">Satış Fiyatı:</label>
 			<input type="text" id="ln" th:field="*{salePrice}">
 			<div><span th:errors="*{salePrice}" class="error"></span></div>
-					
+			</div>
+			
+			<div class="form-item">
 			<label for="dob">Tarih:</label>
 			<input type="text" id="dob" th:field="*{dateOfBirth}">
 			<div><span th:errors="*{dateOfBirth}" class="error"></span></div>	
+			</div>
 		
 			<input type="submit" value="Ekle" class="submit-button">
 		</div>
 	</form>
 	<p>Mevcut ürünlerin listesini görüntüleyebilirsiniz.  <a href="/list.html">here</a>.</p>
+	</div>
 </body>
 
 </html>

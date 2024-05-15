@@ -8,9 +8,10 @@
 </head>
 
 <body>
+	<div class="container">
 	<h2>Person List</h2>
 	<p>List of persons stored in our database:</p>
-	<div th:unless="${#lists.isEmpty(product)}">
+	<div th:unless="${#lists.isEmpty(product)}" class="list-container">
 		<table class="box">
 			<tr>
 				<th></th>
@@ -23,7 +24,7 @@
 				<th>Tarih</th>
 			</tr>
 			<tr th:each="p : ${product}">
-				<td><a th:href="'/delete/' + ${p.id}"><img src="/img/delete.png" width="20"></a></td>
+				<td><a th:href="'/delete/' + ${p.id}"><img src="/img/delete1.png" width="20"></a></td>
 				<td th:text="${p.id}"></td>
 				<td th:text="${p.productName}"></td>
 				<td th:text="${p.count}"></td>
@@ -39,7 +40,8 @@
 	<div th:if="${#lists.isEmpty(product)}">
 		<p class="small-italic">No data found.</p>
 	</div>
-	<p>You can add a new person <a href="/form.html">here</a>.</p>	
+	<p>You can add a new person <a href="/form.html">here</a>.</p>
+	</div>	
 </body>
 
 </html>

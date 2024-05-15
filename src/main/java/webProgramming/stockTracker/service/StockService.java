@@ -22,8 +22,8 @@ public class StockService {
 		return repository.findById(id);
 	}
 
-	public void create(Product person) {
-		repository.create(person);
+	public void create(Product product) {
+		repository.create(product);
 	}
 
 	public void delete(long id) {
