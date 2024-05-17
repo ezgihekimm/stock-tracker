@@ -40,18 +40,17 @@ input, select {
 	width: 100%
 	
 }
-
-input[type="submit" ] {
-	background-color: #2B6BC4;
-	padding: 9px 16px 9px 16px !important
-	}
 	
 .submit-button{
+		background-color: #2B6BC4;
+		padding: 9px 16px 9px 16px !important;
 		color: white;
 		border: none;
 		cursor: pointer;
-		width: 150px !important
+		width: 150px !important;
+		border-radius: 5px;
 	}
+	
 	input:focus {
     color: var(--tblr-body-color);
     background-color: var(--tblr-bg-forms);

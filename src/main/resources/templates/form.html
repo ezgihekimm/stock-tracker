@@ -22,8 +22,7 @@
 
 <body>
 	<div class="container">
-	<h2>Stok Takip Ekranı</h2>
-	<p>Lütfen formu eksiksiz doldurunuz.</p>
+	<h2>Market Stok Takip Ekranı</h2>
 	<form action="/send" method="post" th:object="${product}" class="form">
 		<div class="form-container">
 			
@@ -47,7 +46,7 @@
 			
 			<div class="form-item">
 			<label for="ln">Kategori</label>
-			<select name="cars" id="cars">
+			<select name="categories" id="category">
 			    <option value="volvo">Meyve</option>
 			    <option value="saab">Sebze</option>
 			    <option value="opel">Atıştırmalık</option>

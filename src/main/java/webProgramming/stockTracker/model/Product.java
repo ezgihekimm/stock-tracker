@@ -5,8 +5,6 @@ import java.time.LocalDate;
 
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
-import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
@@ -16,8 +14,8 @@ public class Product {
 
 	private long id;
 	
-	@NotNull
-	@Size(min = 3, max = 50)
+	@NotNull(message="Product name cannot be null")
+	@Size(min = 2, max = 50)
 	private String productName;
 	
 	@Min(1)

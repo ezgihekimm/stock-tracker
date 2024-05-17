@@ -4,13 +4,13 @@
 <head>
 	<link rel="stylesheet" href="/css/style.css">
 	<meta charset="UTF-8">
-	<title>Person List</title>
+	<title>Product List</title>
 </head>
 
 <body>
 	<div class="container">
-	<h2>Person List</h2>
-	<p>List of persons stored in our database:</p>
+	<h2>Product List</h2>
+	<p>List of product stored in our database:</p>
 	<div th:unless="${#lists.isEmpty(product)}" class="list-container">
 		<table class="box">
 			<tr>
@@ -40,7 +40,7 @@
 	<div th:if="${#lists.isEmpty(product)}">
 		<p class="small-italic">No data found.</p>
 	</div>
-	<p>You can add a new person <a href="/form.html">here</a>.</p>
+	<p>You can add a new product <a href="/form.html">here</a>.</p>
 	</div>	
 </body>
 

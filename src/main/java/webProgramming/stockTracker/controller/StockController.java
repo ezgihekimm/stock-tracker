@@ -13,12 +13,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import webProgramming.stockTracker.model.Product;
 import webProgramming.stockTracker.service.StockService;
+import webProgramming.stockTracker.validator.FieldSizeValidator;
 
 @Controller
 public class StockController {
 
 	@Autowired
 	private StockService service;
+	
+	@Autowired
+	FieldSizeValidator fmv;
+	
 
 	@GetMapping("form.html")
 	public ModelAndView displayForm() {
@@ -32,6 +37,8 @@ public class StockController {
 	public ModelAndView processForm(@Valid @ModelAttribute Product product, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("product", product);
+		
+		fmv.validate(product, result);
 
 		if (result.hasErrors())
 			mv.setViewName("form");
