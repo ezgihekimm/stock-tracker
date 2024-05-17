@@ -1,70 +1,53 @@
 package webProgramming.stockTracker.model;
 
-
 import java.time.LocalDate;
-
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Product {
 
-	private long id;
-	
-	@NotNull(message="Product name cannot be null")
-	@Size(min = 2, max = 50)
-	private String productName;
-	
-	@Min(1)
-	private int count;
-	
-	@Min(0)
-	private int barcode;
-	
-	@Min(5)
-	private double purchasePrice;
-	  
-	@Min(5)
-    private double salePrice; 
-	
-    @NotNull
-	@Past
-	@DateTimeFormat(pattern = "dd.MM.yyyy")
-	private LocalDate dateOfBirth;
+    private long id;
 
-	public long getId() {
-		return id;
-	}
+    @NotNull(message = "{NotNull.product.productName}")
+    @Size(min = 3, max = 50, message = "{Size.product.productName}")
+    private String productName;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    @Min(value = 1, message = "{Min.product.count}")
+    private int count;
 
-	public String getProductName() {
-		return productName;
-	}
+    @Min(value = 0, message = "{Size.product.barcode}")
+    private String barcode;
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-	
-	public double getPurchasePrice() {
-	    return purchasePrice;
-	}
+    @Min(value = 5, message = "{Min.product.purchasePrice}")
+    private double purchasePrice;
 
-	public void setPurchasePrice(double purchasePrice) {
-	    this.purchasePrice = purchasePrice;
-	}
-	
-    public double getSalePrice() {
-        return salePrice;
+    @Min(value = 5, message = "{Min.product.salePrice}")
+    private double salePrice;
+
+    @NotNull(message = "{NotNull.product.dateOfBirth}")
+    @Past(message = "{Past.product.dateOfBirth}")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    private LocalDate dateOfBirth;
+
+    private String category;
+
+    public long getId() {
+        return id;
     }
 
-    public void setSalePrice(double salePrice) {
-        this.salePrice = salePrice;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public int getCount() {
@@ -74,23 +57,44 @@ public class Product {
     public void setCount(int count) {
         this.count = count;
     }
-    
-    public int getBarcode() {
+
+    public String getBarcode() {
         return barcode;
     }
 
-    public void setBarcode(int count) {
-        this.barcode = count;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
-	public LocalDate getDateOfBirth() {
-		return dateOfBirth;
-	}
+    public double getPurchasePrice() {
+        return purchasePrice;
+    }
 
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setPurchasePrice(double purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
 
-		this.dateOfBirth = dateOfBirth;
-	}
+    public double getSalePrice() {
+        return salePrice;
+    }
 
+    public void setSalePrice(double salePrice) {
+        this.salePrice = salePrice;
+    }
 
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }

@@ -19,10 +19,9 @@ public class FieldSizeValidator implements Validator {
     public void validate(Object target, Errors errors) {
         Product product = (Product) target;
 
-        // Barcode değerinin 10 ile 14 karakter uzunluğunda olup olmadığını kontrol etme
-        String barcode = String.valueOf(product.getBarcode());
+        String barcode = product.getBarcode();
         if (barcode.length() < 10 || barcode.length() > 14) {
-            errors.rejectValue("barcode", "barcode.size.invalid");
+            errors.rejectValue("barcode", "barcode.size.invalid", "Barkod alanı 10 ve 14 basamak arasında olmalı.");
         }
     }
 }

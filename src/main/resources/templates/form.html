@@ -1,83 +1,86 @@
 <!DOCTYPE html>
+<html lang="${lang}">
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-	<link rel="stylesheet" href="/css/style.css">
-	<meta charset="UTF-8">
-	<title>New Person</title>
-	<style>
-		.form-container {
-			display: grid;
-			grid-template-columns: 130px 170px auto;
-			gap: 15px;
-		}
-
-		.submit-button {
-			grid-column: span 3;
-			justify-self: left;
-			width: 80px;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
-	<div class="container">
-	<h2>Market Stok Takip Ekranı</h2>
-	<form action="/send" method="post" th:object="${product}" class="form">
-		<div class="form-container">
-			
-			<div class="form-item">
-			<label for="pn">Ürün Adı:</label>
-			<input type="text" id="pn" th:field="*{productName}">
-			<div><span th:errors="*{productName}" class="error"></span></div>
-			</div>
-			
-			<div class="form-item">
-			<label for="ln">Adet:</label>
-			<input type="text" id="ln" th:field="*{count}">
-			<div><span th:errors="*{count}" class="error"></span></div>
-			</div>
-			
-			<div class="form-item">
-			<label for="ln">Barkod Numarası:</label>
-			<input type="text" id="ln" th:field="*{barcode}">
-			<div><span th:errors="*{barcode}" class="error"></span></div>
-			</div>
-			
-			<div class="form-item">
-			<label for="ln">Kategori</label>
-			<select name="categories" id="category">
-			    <option value="volvo">Meyve</option>
-			    <option value="saab">Sebze</option>
-			    <option value="opel">Atıştırmalık</option>
-			    <option value="audi">Temel Gıda</option>
-			  </select>
-			 <div><span th:errors="*{barcode}" class="error"></span></div>
-			 </div>
-			 
-			 <div class="form-item">
-			<label for="ln">Alış Fiyatı:</label>
-			<input type="text" id="ln" th:field="*{purchasePrice}">
-			<div><span th:errors="*{purchasePrice}" class="error"></span></div>	
-			</div>	
-				
-			<div class="form-item">
-			<label for="ln">Satış Fiyatı:</label>
-			<input type="text" id="ln" th:field="*{salePrice}">
-			<div><span th:errors="*{salePrice}" class="error"></span></div>
-			</div>
-			
-			<div class="form-item">
-			<label for="dob">Tarih:</label>
-			<input type="text" id="dob" th:field="*{dateOfBirth}">
-			<div><span th:errors="*{dateOfBirth}" class="error"></span></div>	
-			</div>
+    <div class="container">
 		
-			<input type="submit" value="Ekle" class="submit-button">
-		</div>
-	</form>
-	<p>Mevcut ürünlerin listesini görüntüleyebilirsiniz.  <a href="/list.html">here</a>.</p>
-	</div>
-</body>
+        <h1 th:text="#{market.stock.tracking.screen}">Stock Tracking Screen</h1>
+		
+		<div class="language">
+		     <select id="language" onchange="changeLanguage()">
+		         <option value="en" th:selected="${lang == 'en'}">English</option>
+		          <option value="tr" th:selected="${lang == 'tr'}">Türkçe</option>
+		          <option value="de" th:selected="${lang == 'de'}">Deutsch</option>
+		       </select>
+		 </div>
+		 
+          <form action="/send" th:object="${product}" method="post" class="form">
+			
+			<div class="form-container">
+                <div class="form-item">
+                    <label th:text="#{product.name}">Product Name</label>
+                    <input type="text" th:field="*{productName}" />
+                    <div class="error" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}">Product name error</div>
+                </div>
+				
+                <div class="form-item">
+                    <label th:text="#{product.count}">Count</label>
+                    <input type="number" th:field="*{count}" />
+                    <div class="error" th:if="${#fields.hasErrors('count')}" th:errors="*{count}">Count error</div>
+                </div>
+				
+                <div class="form-item">
+                    <label th:text="#{product.barcode}">Barcode</label>
+                    <input type="number" th:field="*{barcode}" />
+                    <div class="error" th:if="${#fields.hasErrors('barcode')}" th:errors="*{barcode}">Barcode error</div>
+                </div>
+				
+                <div class="form-item">
+                    <label th:text="#{product.category}">Category</label>
+                    <select th:field="*{category}">
+                        <option th:text="#{category.fruit}" value="Fruit">Fruit</option>
+						<option th:text="#{category.vegetables}" value="Fruit">Vegetables</option>
+						<option th:text="#{category.temel}" value="Fruit">Staple Food</option>
+                    </select>
+                    <div class="error" th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Category error</div>
+                </div>
+				
+                <div class="form-item">
+                    <label th:text="#{product.purchasePrice}">Purchase Price</label>
+                    <input type="number" step="0.01" th:field="*{purchasePrice}" />
+                    <div class="error" th:if="${#fields.hasErrors('purchasePrice')}" th:errors="*{purchasePrice}">Purchase price error</div>
+                </div>
+				
+                <div class="form-item">
+                    <label th:text="#{product.salePrice}">Sale Price</label>
+                    <input type="number" step="0.01" th:field="*{salePrice}" />
+                    <div class="error" th:if="${#fields.hasErrors('salePrice')}" th:errors="*{salePrice}">Sale price error</div>
+                </div>
+				
+                <div class="form-item">
+                    <label th:text="#{product.dateOfBirth}">Date of Birth</label>
+                    <input type="date" th:field="*{dateOfBirth}" />
+                    <div class="error" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Date of birth error</div>
+                </div>
+				
+                <input type="submit" value="Add" class="submit-button" th:value="#{add}"/>
+            </form>
 
+        </div>
+		<a href="list.html" class="view" th:text="#{existing.product.list}">View Existing Products</a>
+    </div>
+	
+    <script>
+        function changeLanguage() {
+            const lang = document.getElementById('language').value;
+            window.location.href = 'form.html?lang=' + lang;
+        }
+    </script>
+	
+</body>
 </html>

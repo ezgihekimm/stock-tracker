@@ -26,7 +26,7 @@ public class StockRepository {
 			product.setId(rs.getLong("id"));
 			product.setProductName(rs.getString("pname"));
 		    product.setCount(rs.getInt("count"));
-		    product.setBarcode(rs.getInt("barcode"));
+		    product.setBarcode(rs.getString("barcode"));
 		    product.setPurchasePrice(rs.getDouble("purchasePrice"));
 		    product.setSalePrice(rs.getDouble("salePrice"));
 		    product.setDateOfBirth(rs.getObject("dateOfBirth", LocalDate.class));

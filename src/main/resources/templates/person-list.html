@@ -1,47 +1,46 @@
 <!DOCTYPE html>
+<html lang="${lang}">
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-	<link rel="stylesheet" href="/css/style.css">
-	<meta charset="UTF-8">
-	<title>Product List</title>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
-	<div class="container">
-	<h2>Product List</h2>
-	<p>List of product stored in our database:</p>
-	<div th:unless="${#lists.isEmpty(product)}" class="list-container">
-		<table class="box">
-			<tr>
-				<th></th>
-				<th>ID</th>
-				<th>Ürün İsmi</th>
-				<th>Adet</th>
-				<th>Barkod Numarası</th>
-				<th>Alış Fiyatı</th>
-				<th>Satış Fiyatı</th>
-				<th>Tarih</th>
-			</tr>
-			<tr th:each="p : ${product}">
-				<td><a th:href="'/delete/' + ${p.id}"><img src="/img/delete1.png" width="20"></a></td>
-				<td th:text="${p.id}"></td>
-				<td th:text="${p.productName}"></td>
-				<td th:text="${p.count}"></td>
-				<td th:text="${p.barcode}"></td>
-				<td th:text="${p.purchasePrice}"></td>
-				<td th:text="${p.salePrice}"></td>
-				<td><span th:text="${#temporals.format(p.dateOfBirth, 'dd.MM.yyyy')}"></span>
-				    <span th:if="${#strings.isEmpty(p.dateOfBirth)}" th:text="'---'"></span></td>
-			</tr>
-		</table>
-	</div>
-	
-	<div th:if="${#lists.isEmpty(product)}">
-		<p class="small-italic">No data found.</p>
-	</div>
-	<p>You can add a new product <a href="/form.html">here</a>.</p>
-	</div>	
+    <div class="container">
+        <h1 th:text="#{existing.product.list}">Product List</h1>
+        <table class="box" th:if="${product != null and product.size() > 0}">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th th:text="#{product.name}">Product Name</th>
+                    <th th:text="#{product.count}">Count</th>
+                    <th th:text="#{product.barcode}">Barcode</th>
+                    <th th:text="#{product.purchasePrice}">Purchase Price</th>
+                    <th th:text="#{product.salePrice}">Sale Price</th>
+                    <th th:text="#{product.dateOfBirth}">Date of Birth</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${product}">
+                    <td th:text="${product.id}">1</td>
+                    <td th:text="${product.productName}">Product Name</td>
+                    <td th:text="${product.count}">10</td>
+                    <td th:text="${product.barcode}">1234567890</td>
+                    <td th:text="${product.purchasePrice}">50.00</td>
+                    <td th:text="${product.salePrice}">75.00</td>
+                    <td th:text="${product.dateOfBirth}">01.01.2020</td>
+                    <td>
+                        <a th:href="@{/delete/{id}(id=${product.id})}"><img src="/img/delete1.png" width="20"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div th:if="${product == null or product.size() == 0}" class="no-data">
+            <p th:text="#{no.data.found}">No data found</p>
+        </div>
+        <a href="/form.html" class="view" th:text="#{add.new.product}">Add New Product</a>
+    </div>
 </body>
-
 </html>

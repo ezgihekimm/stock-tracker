@@ -1,6 +1,9 @@
 package webProgramming.stockTracker.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import webProgramming.stockTracker.model.Product;
 import webProgramming.stockTracker.service.StockService;
@@ -25,14 +29,16 @@ public class StockController {
 	FieldSizeValidator fmv;
 	
 
-	@GetMapping("form.html")
-	public ModelAndView displayForm() {
-		ModelAndView mv = new ModelAndView("form");
-		mv.addObject("product", new Product());
+	 @GetMapping("form.html")
+	    public ModelAndView displayForm(HttpServletRequest request) {
+	        Locale locale = RequestContextUtils.getLocale(request);
+	        ModelAndView mv = new ModelAndView("form");
+	        mv.addObject("product", new Product());
+	        mv.addObject("lang", locale.getLanguage());
 
-		return mv;
-	}
-
+	        return mv;
+	    }
+	 
 	@PostMapping("/send")
 	public ModelAndView processForm(@Valid @ModelAttribute Product product, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
